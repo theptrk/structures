@@ -20,7 +20,7 @@ Link.prototype.tail = function(cb){
   if ( this.next !== null ) {
     return this.next.tail(cb);
   } else {
-    return cb(this);
+    return cb === undefined ? this: cb(this);
   }
 };
 
