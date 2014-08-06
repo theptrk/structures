@@ -41,6 +41,28 @@ describe("Link", function() {
     expect(newLink.contains(11)).to.equal(true);
   });
 
+  it("`count` should return an integer with the current link count", function() {
+    expect(newLink.count()).to.equal(1);
+    newLink.add(1);
+    newLink.add(11);
+    expect(newLink.count()).to.equal(3);
+  });
+
+  it("`max` should return the maximum value at link.data", function() {
+    expect(newLink.max()).to.equal(7);
+    newLink.add(1);
+    newLink.add(11);
+    expect(newLink.max()).to.equal(11);
+  });
+
+  it("`max` should take a string and return maximum value at link.data[<string>]", function() {
+    var kale = new Link({name: "Patrick", age: 25});
+    expect(kale.max("age")).to.equal(25);
+    kale.add({name: "D", age: 24});
+    kale.add({name: "Hilary", age: 26});
+    expect(kale.max("age")).to.equal(26);
+  });
+  
   // it("should add children to the tree", function() {
   //   tree.addChild(5);
   //   expect(tree.children[0].value).to.equal(5);
