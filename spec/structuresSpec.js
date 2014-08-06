@@ -79,12 +79,13 @@ describe("Link", function() {
     expect(newLink.indexFrom(11)).to.equal(2);
     expect(newLink.indexFrom(999)).to.equal(-1);
   });
-  // it("should add children to the tree", function() {
-  //   tree.addChild(5);
-  //   expect(tree.children[0].value).to.equal(5);
-  // });
-
-  //   assert.isFalse(tree.contains(6));
-  //   expect(tree.children[0].value).to.equal(6);
+  
+  xit("template", function() {
+    tree.addChild(5);
+    newLink.add(1);
+    newLink.add(11);
+    expect(newLink.fn()).to.equal();
+    expect(newLink.fn()).to.equal();
+  });
 
 });
