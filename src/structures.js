@@ -40,6 +40,20 @@ Link.prototype.add = function(data){
   });
 };
 
+Link.prototype.indexFrom = function(target) {
+  var index = 0;
+  var found = false;
+  this.each(function(link){
+    if(!found && link.data === target) {
+      found = true;
+    }
+    if (!found) {
+      index += 1;
+    }
+  });
+  return !found ? -1: index;
+};
+
 Link.prototype.contains = function(target){
 
   var check = false;

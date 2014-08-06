@@ -62,7 +62,14 @@ describe("Link", function() {
     kale.add({name: "Hilary", age: 26});
     expect(kale.max("age")).to.equal(26);
   });
-  
+
+  it("`indexFrom` should return 0 for current and count increasingly", function() {
+    expect(newLink.indexFrom(7)).to.equal(0);
+    newLink.add(1);
+    newLink.add(11);
+    expect(newLink.indexFrom(11)).to.equal(2);
+    expect(newLink.indexFrom(999)).to.equal(-1);
+  });
   // it("should add children to the tree", function() {
   //   tree.addChild(5);
   //   expect(tree.children[0].value).to.equal(5);
