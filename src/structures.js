@@ -51,9 +51,29 @@ Link.prototype.contains = function(target){
   return check;
 };
 
+Link.prototype.count = function(){
+  if (this.next === null) {
+    return 1;
+  }
+  return this.next.count() + 1;
+};
 
-Link.prototype.max = function(value){};
-Link.prototype.count = function(){};
+// allow users to specify property of data objects
+Link.prototype.max = function(prop){
+  if (this.next === null) {
+    return typeof prop === "string" ? this.data[prop]: this.data;
+  }  
+  return typeof prop === "string" ?
+    Math.max(this.next.max(prop), this.data[prop]):
+      Math.max(this.next.max(), this.data); 
+};
+
+var kale = new Link({name: "Patrick", age: 25});
+console.log(kale.max("age"));
+kale.add({name: "D", age: 24});
+kale.add({name: "Hilary", age: 26});
+console.log(kale.max("age"));
+
 Link.prototype.reduce = function(iterator, acc){};
 Link.prototype.deleteNode = function(node){};
 Link.prototype.checkLoops = function(){};
