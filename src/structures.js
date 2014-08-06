@@ -5,6 +5,16 @@ var Link = function(data){
   this.next = null;
 };
 
+Link.prototype.each = function(cb) {
+  cb(this);
+
+  if (this.next !== null) {
+    this.next.each(cb);
+  }
+};
+
+// `tail` recurses until it finds the tail and returns the result of a 
+// invoking a passed in callback on the tail.
 Link.prototype.tail = function(cb){
   
   if ( this.next !== null ) {
@@ -14,7 +24,7 @@ Link.prototype.tail = function(cb){
   }
 };
 
-// `add`::(<Link>, <generic>) -> <Link>
+// `add`::(<Link>, <Generic_Data>) -> <Link>
 // fn takes two routes depending on the type of arguments
 // if passed in `instanceof Link`, `add` points to this at the tail
 // if passed in any other datatype, add will create a new `Link` and 
@@ -23,15 +33,23 @@ Link.prototype.add = function(data){
 
   var newLink = data instanceof Link ? data: new Link(data);  
   
-  this.tail(function(v){
-    return v;
-  }).next = newLink;
-
-  return newLink;
-
+  // v is the tail and we set a new tail here and returns up the stack
+  return this.tail(function(v){
+    v.next = newLink;
+    return newLink;
+  });
 };
 
-Link.prototype.contains = function(){};
+Link.prototype.contains = function(target){
+
+  var check = false;
+  this.each(function(link){
+    if (link.data === target) {
+      check = true;
+    }
+  });
+  return check;
+};
 
 
 Link.prototype.max = function(value){};
@@ -42,27 +60,6 @@ Link.prototype.checkLoops = function(){};
 Link.prototype.removeHead = function(){};
 Link.prototype.indexOf = function(){};
 Link.prototype.slice = function(){};
-
-// `add` iteratively with a while loop until node is tail
-Link.prototype.add_iterative = function(data) {
-  node = this;
-  newLink = data instanceof Link ? data: new Link(data);  
-  while( node.next !== null ) {
-    node = node.next;
-  }
-  node.next = newLink;
-  return newLink;
-};
-// `add` iteratively by calling add_recursive until tail
-Link.prototype.add_recursive = function(data) {
-  if ( this.next !== null) {
-    return this.next.add_recursive(data);
-  } else {
-    var newLink = data instanceof Link ? data: new Link(data);  
-    this.next = newLink;
-    return newLink;
-  }
-};
 
 module.exports = {
   Link: Link
