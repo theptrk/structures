@@ -58,21 +58,16 @@ Link.prototype.count = function(){
   return this.next.count() + 1;
 };
 
-// allow users to specify property of data objects
+// `max` may take an argument `prop` that specifies the propery given
+// a link with an object as the data argument. Defaults to assuming data is an integer
 Link.prototype.max = function(prop){
   if (this.next === null) {
     return typeof prop === "string" ? this.data[prop]: this.data;
-  }  
+  }
   return typeof prop === "string" ?
     Math.max(this.next.max(prop), this.data[prop]):
-      Math.max(this.next.max(), this.data); 
+      Math.max(this.next.max(), this.data);
 };
-
-var kale = new Link({name: "Patrick", age: 25});
-console.log(kale.max("age"));
-kale.add({name: "D", age: 24});
-kale.add({name: "Hilary", age: 26});
-console.log(kale.max("age"));
 
 Link.prototype.reduce = function(iterator, acc){};
 Link.prototype.deleteNode = function(node){};
