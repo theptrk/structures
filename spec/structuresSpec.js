@@ -62,6 +62,15 @@ describe("Link", function() {
     kale.add({name: "Hilary", age: 26});
     expect(kale.max("age")).to.equal(26);
   });
+  
+  it("`hackDelete` should be able to delete all nodes except tail", function() {
+    newLink.add(1);
+    var deleteThis = newLink.add(11);
+    newLink.add(111);
+    expect(newLink.contains(11)).to.equal(true);
+    deleteThis.hackDelete();
+    expect(newLink.contains(11)).to.equal(false);
+  });
 
   it("`indexFrom` should return 0 for current and count increasingly", function() {
     expect(newLink.indexFrom(7)).to.equal(0);

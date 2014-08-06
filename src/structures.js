@@ -83,10 +83,19 @@ Link.prototype.max = function(prop){
       Math.max(this.next.max(), this.data);
 };
 
+// `hackDelete` is given only a node and if it is not a tail, the fn will
+// copy the current node data from next and assign next to next.next
+Link.prototype.hackDelete = function(node){
+  if (this.next === null) {
+    throw ("Cannot hack delete a tail node");
+  }
+  this.data = this.next.data;
+  this.next = this.next.next;
+};
+
+
 Link.prototype.reduce = function(iterator, acc){};
-Link.prototype.deleteNode = function(node){};
 Link.prototype.checkLoops = function(){};
-Link.prototype.removeHead = function(){};
 Link.prototype.indexOf = function(){};
 Link.prototype.slice = function(){};
 
