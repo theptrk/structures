@@ -1,0 +1,19 @@
+{
+  "name": "structures",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theptrk/structures.git"
+  },
+  "author": "Patrick Tran <patrick.tran06@gmail.com> (http://theptrk.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theptrk/structures/issues"
+  },
+  "homepage": "https://github.com/theptrk/structures"
+}
