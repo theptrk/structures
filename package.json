@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/theptrk/structures/issues"
   },
-  "homepage": "https://github.com/theptrk/structures"
+  "homepage": "https://github.com/theptrk/structures",
+  "dependencies": {
+    "chai": "^1.9.1",
+    "jquery": "^2.1.1",
+    "mocha": "^1.21.3",
+    "underscore": "^1.6.0"
+  }
 }
