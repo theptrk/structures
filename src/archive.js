@@ -29,3 +29,11 @@ Link.prototype.contains = function(target) {
   }
   return false;
 };
+
+Link.prototype.each = function(cb) {
+  cb(this);
+
+  if (this.next !== null) {
+    this.next.each(cb);
+  }
+};
