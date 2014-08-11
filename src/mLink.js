@@ -1,3 +1,5 @@
+var _ = require('../node_modules/underscore/underscore');
+
 // My version of a linked list that provides access to only one link in 
 // a typical linked list. 
 var Link = function(data){
@@ -93,12 +95,27 @@ Link.prototype.hackDelete = function(node){
   this.next = this.next.next;
 };
 
+Link.prototype.map = function(cb){
+  cb = cb || _.identity;
+  var currentNode = this;
+
+  var newNode = new Link(cb(currentNode.data));
+  var currentTail = newNode;
+  
+  while(currentNode.next !== null) {
+    currentNode = currentNode.next;
+    currentTail.next = new Link(cb(currentNode.data));
+    currentTail = currentTail.next;
+  }
+
+  currentTail.next = null;
+
+  return newNode;
+  
+};
 
 Link.prototype.reduce = function(iterator, acc){};
 Link.prototype.checkLoops = function(){};
-Link.prototype.indexOf = function(){};
-Link.prototype.slice = function(){};
 
-module.exports = {
-  Link: Link
-};
+module.exports = Link;
+

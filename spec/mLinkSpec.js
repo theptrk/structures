@@ -1,5 +1,9 @@
-var expect = chai.expect;
-var assert = chai.assert;
+// var expect = chai.expect;
+// var assert = chai.assert;
+
+var expect = require("must");
+var assert = require("assert");
+var Link = require("../src/mLink");
 
 describe("Link", function() {
   var newLink;
@@ -80,6 +84,13 @@ describe("Link", function() {
     expect(newLink.indexFrom(999)).to.equal(-1);
   });
   
+  // it("`map` should return a list and take a callback", function() {
+  //   tree.addChild(77);
+  //   tree.addChild(777);
+  //   var kale = newLink.map();
+  //   expect(newLink.max()).to.equal(777);
+  // });
+
   xit("template", function() {
     tree.addChild(5);
     newLink.add(1);
